@@ -10,7 +10,7 @@ footer .columns {
 footer .social {
     text-align: right;
 }
-footer .social img {
+.social-icon {
     height: 35px;
     width: 35px;
 }
@@ -21,3 +21,4 @@ footer p {
     font-weight: 300;
     padding-top: 0.5rem;
 }
+
