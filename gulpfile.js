@@ -6,7 +6,8 @@ var gulp = require('gulp'),
 	uglifyCss = require('gulp-uglifycss'),
 	rename = require('gulp-rename'),
 	maps = require('gulp-sourcemaps'),
-	del = require('del');
+	del = require('del'),
+	imagemin = require('gulp-imagemin');
 
 gulp.task("concatScripts", function() {
 	return gulp.src([
@@ -51,11 +52,18 @@ gulp.task("minifyCss", ["concatCss"], function() {
 });
 
 
+gulp.task("compressImage", function() {
+	gulp.src('img/**/*.{jpg,png}')
+		.pipe(imagemin())
+		.pipe(gulp.dest('img'));
+});
+
+
 gulp.task('clean', function() {
 	del(['dist', 'css/main*.css*', 'js/app*.js*']);
 })
 
-gulp.task("build", ['minifyScripts', 'minifyCss'], function() {
+gulp.task("build", ['minifyScripts', 'minifyCss', 'compressImage'], function() {
 	return gulp.src( ["css/main.min.css", "js/app.min.js", 'index.html',
 						"img/**" ], { base: './' } )
 		.pipe(gulp.dest('dist'));
