@@ -53,7 +53,7 @@ gulp.task("minifyCss", ["concatCss"], function() {
 
 
 gulp.task("compressImage", function() {
-	gulp.src('img/**/*.{jpg,png}')
+	return gulp.src('img/**/*.{jpg,png}')
 		.pipe(imagemin())
 		.pipe(gulp.dest('img'));
 });
